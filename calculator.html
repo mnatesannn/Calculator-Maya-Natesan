@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head><title>Calculator</title></head>
+<body>
+    <h1>Calculator</h1>
+	<p>
+		<label for="firstnumberinput">First Number:</label>
+		<input type="number" name="num1" id="num1input" />
+
+		<label for="secondnumberinput">Second Number:</label>
+		<input type="number" name="num2" id="num2input" />
+	</p>
+	<p>
+	<strong>Function:</strong>
+	<input type="radio" name="function" value="addition" id="addinput" /> 
+	<label for="addinput">Add</label> &nbsp;
+
+	<input type="radio" name="function" value="subtraction" id="subtractinput" />
+	<label for="subtractinput">Subtract</label>
+       
+	<input type="radio" name="function" value="multiplication" id="multinput" />
+	<label for="multinput">Multiply</label> &nbsp;
+
+	<input type="radio" name="function" value="division" id="divinput" />
+	<label for="divinput">Divide</label>
+	</p>
+	<p>
+		<button id='btn'>Calculate</button>
+	</p>
+</body>
+<script>
+    function checkFunction() {
+        var function_pointers = document.getElementsByName('function');
+        var which_function = null;
+        for(var i = 0; i <function_pointers.length; i++) {
+            if(function_pointers[i].checkFunction){
+                which_function = function_pointers[i].value;
+                break;
+            }
+        }
+        alert(which_function);
+    }
+    document.getElementById('btn').addEventListener('click', checkFunction, false)
+	
+
+</script>
+</html>
