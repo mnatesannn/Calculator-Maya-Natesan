@@ -3,12 +3,14 @@
 <body>
     <h1>Calculator</h1>
 	<p>
-		<label for="firstnumberinput">First Number:</label>
+		<label for="num1input">First Number:</label>
 		<input type="number" name="num1" id="num1input" />
 
-		<label for="secondnumberinput">Second Number:</label>
+		<label for="num2input">Second Number:</label>
 		<input type="number" name="num2" id="num2input" />
+		<div class = 'result'></div>
 	</p>
+	
 	<p>
 	<strong>Function:</strong>
 	<input type="radio" name="function" value="addition" id="addinput" /> 
@@ -26,21 +28,77 @@
 	<p>
 		<button id='btn'>Calculate</button>
 	</p>
+
+	<p id='display'></p>
+	
+	<p id='display2'></p>
+
+	<p id='display3'></p>
+  
 </body>
 <script>
+
+	const num1 = document.querySelector('[name="num1"]');
+	const num2 = document.querySelector('[name="num2"]');
+	const display = document.getElementById('display');
+	const display2 = document.getElementById('display2');
+	const display3 = document.getElementById('display3');
+	var first_number;
+	var second_number;
+
+	function one(e) {
+		display.textContent = "First Number: " + e.target.value;
+		first_number = e.target.value;
+	}
+
+	function two(e) {
+		display2.textContent = "Second Number: " + e.target.value;
+		second_number = e.target.value;
+	}
+
+	num1.addEventListener('change', one);
+	num2.addEventListener('change', two);
+
     function checkFunction() {
+
         var function_pointers = document.getElementsByName('function');
         var which_function = null;
-        for(var i = 0; i <function_pointers.length; i++) {
-            if(function_pointers[i].checkFunction){
+        for(var i = 0; i < function_pointers.length; i++) {
+            if(function_pointers[i].checked){
                 which_function = function_pointers[i].value;
                 break;
             }
         }
-        alert(which_function);
-    }
-    document.getElementById('btn').addEventListener('click', checkFunction, false)
 	
+		if(which_function=='addition'){
+			var sum = +first_number + +second_number;
+			display3.textContent = "Sum: " + sum;
+
+		} else if (which_function=='division') {
+			if(second_number == 0) {
+				display3.textContent = "The calculation could not be performed.";
+			} else {
+				var quotient = first_number/second_number;
+				display3.textContent = "Quotient: " + quotient;
+			}
+
+		} else if (which_function=='subtraction'){
+			var difference = first_number - second_number;
+			display3.textContent = "Difference: " + difference;
+
+		} else if (which_function == 'multiplication') {
+			var product = first_number * second_number;
+			display3.textContent = "Product: " + product;
+
+		} else {
+			var none = "error";
+			display3.textContent = none;
+		}
+    }
+
+
+
+    document.getElementById('btn').addEventListener('click', checkFunction, false);
 
 </script>
 </html>
